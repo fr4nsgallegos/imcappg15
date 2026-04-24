@@ -13,15 +13,22 @@ class RichtextPage extends StatelessWidget {
           children: [
             Text("Hola mundo!"),
             RichText(
+              //widget principal
               text: TextSpan(
-                text: "Hola ",
-                style: TextStyle(color: Colors.black, fontSize: 25),
+                //contenedor del texto
+                text: "Hola ", //texto inicial
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ), //estilo principal
                 children: [
                   TextSpan(
+                    //hijo1
                     text: "Mundo",
                     style: TextStyle(color: Colors.red, fontSize: 40),
                   ),
                   TextSpan(
+                    //hijo2
                     text: " Desde Flutter",
                     style: TextStyle(color: Colors.blue),
                     children: [TextSpan(text: " Que tal")],
