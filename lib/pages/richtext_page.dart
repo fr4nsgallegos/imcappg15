@@ -75,7 +75,19 @@ class RichtextPage extends StatelessWidget {
               ),
             ),
             // Texto con imágenes
-            RichText(text: TextSpan()),
+            RichText(
+              text: TextSpan(
+                text: "Texto con imágenes",
+                style: TextStyle(color: Colors.orange, fontSize: 25),
+                children: [
+                  WidgetSpan(child: Icon(Icons.favorite, color: Colors.red)),
+                  TextSpan(
+                    text: " mÁS TEXTO",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
