@@ -1,12 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class RichtextPage extends StatelessWidget {
-  const RichtextPage({super.key});
+class RichtextPage extends StatefulWidget {
+  @override
+  State<RichtextPage> createState() => _RichtextPageState();
+}
+
+class _RichtextPageState extends State<RichtextPage> {
+  bool isImportant = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          isImportant = !isImportant;
+          setState(() {});
+        },
+      ),
       appBar: AppBar(title: Text("RichtextPage")),
       body: Center(
         child: Column(
@@ -84,6 +95,26 @@ class RichtextPage extends StatelessWidget {
                   TextSpan(
                     text: " mÁS TEXTO",
                     style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 32),
+            // Con condicionales
+            RichText(
+              text: TextSpan(
+                text: "Este es un texto",
+                style: TextStyle(color: Colors.black),
+                children: [
+                  TextSpan(
+                    text: isImportant ? " IMPORTANTE" : " normal",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: isImportant
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                      color: isImportant ? Colors.red : Colors.orange,
+                    ),
                   ),
                 ],
               ),
