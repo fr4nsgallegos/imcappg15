@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class RichtextPage extends StatelessWidget {
@@ -36,6 +37,45 @@ class RichtextPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 32),
+
+            // Recibo interacción del usuario en la palabra
+            RichText(
+              text: TextSpan(
+                text: "Hac clic",
+                style: TextStyle(color: Colors.black, fontSize: 30),
+                children: [
+                  TextSpan(
+                    text: " Aquí",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        print("Texto cliceado");
+                      },
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 32),
+            // Simulando subindices
+            RichText(
+              text: TextSpan(
+                text: "H",
+                style: TextStyle(color: Colors.cyan, fontSize: 50),
+                children: [
+                  TextSpan(
+                    text: "2",
+                    style: TextStyle(color: Colors.red, fontSize: 30),
+                  ),
+                  TextSpan(text: "O"),
+                ],
+              ),
+            ),
+            // Texto con imágenes
+            RichText(text: TextSpan()),
           ],
         ),
       ),
