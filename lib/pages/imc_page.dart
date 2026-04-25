@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:imcappg15/models/imc_model.dart';
 
 class ImcPage extends StatefulWidget {
   @override
@@ -6,8 +8,9 @@ class ImcPage extends StatefulWidget {
 }
 
 class _ImcPageState extends State<ImcPage> {
-  double altura = 0.5, peso = 40;
+  double altura = 1.3, peso = 40;
   double imcResult = 0;
+  ImcModel? selectedImcModel;
 
   double calcularIMC() {
     double calculo = peso / (altura * altura);
@@ -40,13 +43,25 @@ class _ImcPageState extends State<ImcPage> {
         ),
 
         Slider(
-          min: isAltura ? 0.4 : 40,
+          min: isAltura ? 1.3 : 40,
           max: isAltura ? 2.1 : 130,
           value: value,
           onChanged: onChanged,
         ),
       ],
     );
+  }
+
+  void imcResultSelected() {
+    if (imcResult > 0 && imcResult < 18.5) {
+      selectedImcModel = imcModelList[0];
+    } else if (imcResult >= 18.5 && imcResult <= 24.9) {
+      selectedImcModel = imcModelList[1];
+    } else if (imcResult >= 25 && imcResult < 30) {
+      selectedImcModel = imcModelList[2];
+    } else {
+      selectedImcModel = imcModelList[3];
+    }
   }
 
   @override
@@ -58,7 +73,8 @@ class _ImcPageState extends State<ImcPage> {
         title: Text("Calculadora IMC"),
         centerTitle: true,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -84,6 +100,7 @@ class _ImcPageState extends State<ImcPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     imcResult = calcularIMC();
+                    imcResultSelected();
                     setState(() {});
                   },
                   child: Text("Calcular"),
@@ -101,6 +118,18 @@ class _ImcPageState extends State<ImcPage> {
               imcResult.toString(),
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             ),
+            Text(
+              selectedImcModel?.title ?? "-",
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(selectedImcModel?.recomendation ?? "-"),
+            SizedBox(height: 32),
+            selectedImcModel == null
+                ? Text("Realiza el calculo para ver el resultado")
+                : SvgPicture.asset(
+                    "assets/images/${selectedImcModel!.pathImage}.svg",
+                    width: 150,
+                  ),
           ],
         ),
       ),
