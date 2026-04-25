@@ -42,6 +42,14 @@ class _ExamplePageState extends State<ExamplePage> {
             Text(
               "La noche está estrellada,y tiritan, azules, los astros, a lo lejos",
               style: TextStyle(
+                // decoration: TextDecoration.lineThrough, //linea en medio
+                // decoration: TextDecoration.underline, //linea abajo
+                // decoration: TextDecoration.overline, //linea arriba
+                decoration: TextDecoration.combine([
+                  TextDecoration.lineThrough,
+                  TextDecoration.underline,
+                  TextDecoration.overline,
+                ]),
                 fontSize: textSize,
                 color: Color.fromRGBO(
                   rojo.toInt(),
